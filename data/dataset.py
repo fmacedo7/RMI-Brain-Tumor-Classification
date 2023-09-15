@@ -1,7 +1,4 @@
 import os
-import random
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 from sklearn.model_selection import train_test_split
 
 dataset_root = 'data/dataset'
@@ -19,21 +16,18 @@ for class_folder in os.listdir(dataset_root):
                 image_paths.append(image_path)
                 labels.append(int(class_folder))  # Usei o número da pasta como rótulo
 
-# Divide o dataset em conjuntos de treinamento e teste
+# Divida o dataset estratificadamente em conjuntos de treinamento, validação e teste
 train_image_paths, test_image_paths, train_labels, test_labels = train_test_split(
-    image_paths, labels, test_size=0.2, random_state=42)
+    image_paths, labels, test_size=0.2, stratify=labels, random_state=42)
 
-# # Posso ver o caminho e o rotulo das imagens armazenadas na variavel de treinamento
-# print("Primeiros caminhos das imagens de treinamento:", train_image_paths[:5])
-# print("Rótulos de treinamento correspondentes:", train_labels[:5])
+# Em seguida, divida o conjunto de treinamento em treinamento e validação estratificadamente
+train_image_paths, validation_image_paths, train_labels, validation_labels = train_test_split(
+    train_image_paths, train_labels, test_size=0.2, stratify=train_labels, random_state=42)
 
-# # Posso ver a quantidade de imagens de treinamento e o rotulo correspondente
-# print("Número de imagens de treinamento:", len(train_image_paths))
-# print("Número de rótulos de treinamento:", len(train_labels))
+# Agora, você tem três conjuntos (treinamento, validação e teste) com distribuição estratificada
+# Certifique-se de que as proporções das classes estão equilibradas em todos os conjuntos
 
-# # Aqui me mostra qual e a imagen armazenada
-# for img_path in train_image_paths[:5]:
-#     img = mpimg.imread(img_path)
-#     plt.imshow(img)
-#     plt.axis('off')
-#     plt.show()
+
+print("Tamanho do conjunto de treinamento:", len(train_image_paths))
+print("Tamanho do conjunto de validação:", len(validation_image_paths))
+print("Tamanho do conjunto de teste:", len(test_image_paths))
