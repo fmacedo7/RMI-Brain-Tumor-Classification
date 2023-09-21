@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow.keras.applications import Xception
+from keras.applications import Xception
 
 def create_xception_model(num_classes):
     base_model = Xception(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
