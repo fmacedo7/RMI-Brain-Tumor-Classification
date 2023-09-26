@@ -1,7 +1,9 @@
-from src.models.unet import unet
 from tensorflow.python.keras.metrics import MeanIoU
-from tensorflow.python.keras.optimizers import Adam
+from tensorflow.python.keras.optimizer_v1 import Adam
 from keras.preprocessing.image import ImageDataGenerator
+import sys
+sys.path.append('/Users/feliz/OneDrive/Documentos/UESPI/8_bloco/tcc_2/codigo')
+from src.models import unet
 
 # Crie geradores de dados para treinamento e validação
 train_data_generator = ImageDataGenerator(
@@ -11,7 +13,7 @@ train_data_generator = ImageDataGenerator(
 
 validation_data_generator = ImageDataGenerator(
     rescale=1.0 / 255  # Normalização das imagens de validação
-    # Outros parâmetros, se necessário
+    # Outros parâmetros, se neclecessário
 )
 
 train_generator = train_data_generator.flow_from_directory(

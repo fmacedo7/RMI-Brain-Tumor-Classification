@@ -11,7 +11,7 @@ def unet(input_shape, num_classes):
 
     conv2 = Conv2D(128, 3, activation='relu', padding='same')(pool1)
     conv2 = Conv2D(128, 3, activation='relu', padding='same')(conv2)
-    pool2 = MaxPooling2D(pool_size=(2, 2))(conv2)
+    pool5 = MaxPooling2D(pool_size=(2, 2))(conv2)
 
     # Mais camadas do encoder...
 
