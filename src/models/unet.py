@@ -34,4 +34,3 @@ def unet(input_shape, num_classes):
     model = Model(inputs, outputs)
 
     return model
-
